@@ -31,6 +31,20 @@ Giả sử máy A có địa chỉ IP là **192.168.1.5/24** và muốn gửi m�
    máy A một response chứa địa chỉ MAC của máy B.
  - Lúc này máy A đã có địa chỉ MAC của máy B và máy A có thể bắt đầu
    truyền gói tin cho máy B.
+   
+**Sau đây ta sẽ xem một ví dụ về việc chuyển tin giữa hai gói như thế nào?**
+
+Giả sử A biết địa chỉ IP của B
+
+![enter image description here](https://github.com/vanduc95/OpenStack_Network/blob/master/img/foward.png)
+
+ - A tạo một gói tin IP, địa chỉ nguồn A, địa chỉ đích B.
+ - A dùng ARP để lấy địa chỉ MAC của router 111.111.111.110
+ - A tạo một frame với địa chỉ đích là router và đặt gói tin vào.
+ - A chuyển frame tới R
+ - Tại R: nhận frame và đọc địa chỉ IP của B từ trong khung tin
+ - R dùng ARP để tìm địa chỉ MAC của B
+ - R tạo một frame, đặt gói tin vào và chuyển đến B.
 
 ###DHCP
 
