@@ -70,3 +70,19 @@ Sau khi tạo xong máy ảo, vNIC của máy ảo sẽ nhận IP của dải et
 Ta kiểm tra ping từ máy ảo ra ngoài và từ ngoài vào máy ảo. Kết quả trả về thành công
 
 ![](https://github.com/vanduc95/OpenStack_Network/blob/master/img/result_2.png) 
+
+# Tài liệu tham khảo
+[1] http://www.innervoice.in/blogs/2013/12/02/linux-bridge-virtual-networking/
+
+[2] http://techgenix.com/nat-vs-bridged-network-a-simple-diagram-178/
+
+[3] http://www.dedoimedo.com/computers/kvm-bridged.html
+
+[4] https://www.vmware.com/support/ws55/doc/ws_net_configurations_nat.html
+
+[5] https://wiki.linuxfoundation.org/networking/bridge
+
+
+
+
+
