@@ -12,7 +12,13 @@ Trong mô hình OSI, Ethernet là giao thức ở tầng **datalink** mô tả c
  Mỗi thiết bị trên mạng Ethernet được định danh duy nhất  bởi địa chỉ MAC. Nhờ địa chỉ MAC, hai thiết bị giao tiếp được với nhau bằng cách gửi đi các *frame* đã đóng gói địa chỉ MAC nguồn và địa chỉ MAC đích và chúng được chuyển tiếp nhờ thiết bị mạng được gọi là switch.
 
 ###VLANs
-VLAN ( virtual LAN) là một kĩ thuật mạng cho phép chia một miền quảng bá vật lí ra thành nhiều mạng cục bộ độc lập nhau.  Mỗi mạng cục bộ được đặc trưng bởi một định danh, đó là VLAN ID. Cụ thể, khi sử dụng VLAN, nếu 2 máy cùng kết nối tới cùng một switch nhưng được định nghĩa ở 2 mạng VLAN khác nhau thì không thể giao tiếp được với nhau.  
+VLAN ( virtual LAN) là một kĩ thuật mạng cho phép chia một miền quảng bá vật lí ra thành nhiều mạng cục bộ độc lập nhau.  Mỗi mạng cục bộ được đặc trưng bởi một định danh, đó là VLAN ID. Cụ thể, xét hình bên dưới, khi sử dụng VLAN, nếu các máy A,B,C cùng kết nối tới một switch nhưng được định nghĩa ở 2 mạng VLAN khác nhau thì khi máy A gửi gói tin quảng bá(broadcast) thì chỉ những máy thuộc cùng mạng VLAN với A (là máy B) mới có thể nhận được gói tin.
+
+![](https://github.com/vanduc95/OpenStack_Network/blob/master/img/VLAN_ex1.png)
+
+Để máy C có thể gửi gói tin cho máy A (nằm ở 2 mạng VLAN khác nhau), chúng ta cần một router hoặc thiết bị tầng 3. Máy C sẽ gửi gói tin lên router và router sẽ gửi lại gói tin xuống cho A thông qua switch.
+
+ ![](https://github.com/vanduc95/OpenStack_Network/blob/master/img/VLAN_ex2.png)
 
 Tham khảo chi tiết [tại đây](https://github.com/cloudcomputinghust/openstack-manual/blob/master/Introduction-to-OpenStack-networking/OpenStack-networking-Layer2-Introduction.md)
 
@@ -80,6 +86,8 @@ Switch thông thường được biết đến như là một "thiết bị chuy
 Router là thiết bị mạng thuộc tầng 3 trong mô hình OSI (Network layer). Nó còn được gọi là "thiết bị định tuyến hoặc bộ định tuyến" có chức năng chuyển các gói dữ liệu (packet) qua một liên mạng đến các đầu cuối dựa trên địa chỉ IP thông qua một tiến trình gọi là định tuyến.
 
 ![enter image description here](http://vnreview.vn/image/14/69/73/1469738.jpg?t=1448523262236)
+
+Chúng ta có thể hiểu rõ hơn về sự khác nhau về switch và router qua video [này](https://www.youtube.com/watch?v=Ofjsh_E4HFY) 
 
 # Network address translation (NAT)
 
