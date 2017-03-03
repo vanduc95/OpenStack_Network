@@ -34,7 +34,7 @@ Bước 2: Gán card mạng vật lí của host (eth0) tới bridge **br0**. **
 
 
 	# ifconfig eth0 0.0.0.0
-	# sudo brctl addif kvmbr0 eth0
+	# sudo brctl addif br0 eth0
 	
 Bước 3: Comment card mạng **eth0** trong file `/etc/network/interface` nếu có:
 
@@ -70,6 +70,11 @@ Sau khi tạo xong máy ảo, vNIC của máy ảo sẽ nhận IP của dải et
 Ta kiểm tra ping từ máy ảo ra ngoài và từ ngoài vào máy ảo. Kết quả trả về thành công
 
 ![](https://github.com/vanduc95/OpenStack_Network/blob/master/img/result_2.png) 
+
+Cuối cùng nếu muốn xóa linux-bridge **br0** chúng ta sử dụng command line:
+
+	# ip link set br0 down
+	# brctl delbr br0
 
 # Tài liệu tham khảo
 [1] http://www.innervoice.in/blogs/2013/12/02/linux-bridge-virtual-networking/
