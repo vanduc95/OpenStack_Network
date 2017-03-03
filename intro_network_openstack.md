@@ -14,11 +14,11 @@ Trong mô hình OSI, Ethernet là giao thức ở tầng **datalink** mô tả c
 ###VLANs
 VLAN ( virtual LAN) là một kĩ thuật mạng cho phép chia một miền quảng bá vật lí ra thành nhiều mạng cục bộ độc lập nhau.  Mỗi mạng cục bộ được đặc trưng bởi một định danh, đó là VLAN ID. Cụ thể, xét hình bên dưới, khi sử dụng VLAN, nếu các máy A,B,C cùng kết nối tới một switch nhưng được định nghĩa ở 2 mạng VLAN khác nhau thì khi máy A gửi gói tin quảng bá(broadcast) thì chỉ những máy thuộc cùng mạng VLAN với A (là máy B) mới có thể nhận được gói tin.
 
-![](https://github.com/vanduc95/OpenStack_Network/blob/master/img/VLAN_ex1.png)
+![](https://github.com/vanduc95/OpenStack_Network/blob/master/img/VLAN_ex2.png)
 
 Để máy C có thể gửi gói tin cho máy A (nằm ở 2 mạng VLAN khác nhau), chúng ta cần một router hoặc thiết bị tầng 3. Máy C sẽ gửi gói tin lên router và router sẽ gửi lại gói tin xuống cho A thông qua switch.
 
- ![](https://github.com/vanduc95/OpenStack_Network/blob/master/img/VLAN_ex2.png)
+ ![](https://github.com/vanduc95/OpenStack_Network/blob/master/img/VLAN_ex1.png)
 
 Tham khảo chi tiết [tại đây](https://github.com/cloudcomputinghust/openstack-manual/blob/master/Introduction-to-OpenStack-networking/OpenStack-networking-Layer2-Introduction.md)
 
