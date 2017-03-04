@@ -9,7 +9,24 @@ Một linux-bridge có thể được tạo, xóa và quản lí nhờ command l
 
 	$ sudo apt-get install bridge-utils
 
-Chúng ta sẽ tìm hiểu một số command line cơ bản của **brctl** trong phần sau.
+Chúng ta sẽ tìm hiểu một số command line cơ bản sau:
+
+Để tạo một bridge br0:
+
+	$ sudo brctl addbr br0
+
+Để remove bridge br0:
+
+	$ sudo brctl delbr br0
+	
+Để thêm interface eth0 và eth1 tới bridge br0:
+
+	$ sudo brctl addif br0 eth0
+	$ sudo brctl addif br0 eth1
+	
+Để remove interface eth0 xuống bridge br0:
+
+	$sudo brctl delif br0 eth0
 
 #The Simple Use Case
 Như chúng ta đã biết, khi tạo một máy ảo mới, có nhiều options cấu hình network cho máy ảo. Một trong hai options phổ biến được sử dụng đó là `bridge networking` và `network address translation (NAT)`. Vậy sự khác nhau của 2 options này là gì?
@@ -25,33 +42,36 @@ Bây giờ chúng ta sẽ tìm hiểu sâu hơn một chút về linux bridge b�
 ![](https://github.com/vanduc95/OpenStack_Network/blob/master/img/Linux-Bridge-Simple-UseCase.png) 
 
 ##Step-by-step guide
+**Important note**: Wireless interface không thể được gắn vào một Linux host bridge, vì vậy nếu máy của bạn kết nối với external network thông qua wireless interface (wlan0), thì không thể tạo được linux bridge. Chúng ta cần sử card mạng vật lí (trong trường hợp này là eth0)
 
 Bước 1: Tạo một linux bridge có tên là **br0**
 
-	# sudo brctl addbr br0
+	$ sudo brctl addbr br0
 
 Bước 2: Gán card mạng vật lí của host (eth0) tới bridge **br0**. **Note:** Trước khi thực hiện bước này, hãy đảm bảo card mạng vật lí không có bất cứ địa chỉ IP nào được cấu hình.
 
 
-	# ifconfig eth0 0.0.0.0
-	# sudo brctl addif br0 eth0
+	$ ifconfig eth0 0.0.0.0
+	$ sudo brctl addif br0 eth0
 	
 Bước 3: Comment card mạng **eth0** trong file `/etc/network/interface` nếu có:
 
 ![](https://camo.githubusercontent.com/c2ec80f423ce391e1ec1af40e077575408340359/687474703a2f2f692e696d6775722e636f6d2f7a4534703271682e706e67) 
 
-Bước 4: Thêm dòng sau vào trong file `/etc/network/interface` như sau:
+Bước 4: Khi tạo ra một bridge sử dụng **brctl**, nó sẽ tự động hủy khi khởi động lại máy.  Do vậy, để bridge không bị mất khi khởi động, ta cần cấu hình bridge trong file `/etc/network/interface` như sau:
 
 	auto br0
 	iface br0 inet dhcp
 	bridge_ports eth0
-	bridge_stp off # kich hoat che do STP trong bridge
+	bridge_stp off # tat che do STP trong bridge
 	bridge_fd 0 
 	bridge_maxwait 0
 
+**Lưu ý: **`bridge_stp on` có thể gây ra các vấn đề truyền thông tin DHCP tới máy khách. Trong hướng dẫn này, chúng ta sẽ tắt chế độ STP này.
+
 Bước 5: Khởi động lại mạng
 
-	# ifdown -a && ifup -a
+	$ ifdown -a && ifup -a
 	
 Sau bước này, cấu hình network sẽ như hình dưới:
 
@@ -73,8 +93,8 @@ Ta kiểm tra ping từ máy ảo ra ngoài và từ ngoài vào máy ảo. Kế
 
 Cuối cùng nếu muốn xóa linux-bridge **br0** chúng ta sử dụng command line:
 
-	# ip link set br0 down
-	# brctl delbr br0
+	$ ip link set br0 down
+	$ brctl delbr br0
 
 # Tài liệu tham khảo
 [1] http://www.innervoice.in/blogs/2013/12/02/linux-bridge-virtual-networking/
