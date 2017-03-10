@@ -4,14 +4,14 @@ OpenStack Newton All-in-one Install Guide
 
 Bài viết hướng dẫn cài OpenStack bản Newton theo mô hình All-in-one trên Centos 7-64bit
 
-Lưu ý:
+**Lưu ý:**
 
  - Đăng nhập với quyền root trên tất cả các bước cài đặt.
  - Password thống nhất cho tất cả các dịch vụ là `bkcloud`
  - Trước khi cài đặt, cần cập nhật các gói phần mềm
 
->  # yum update  
->  # yum upgrade
+	     # yum update  
+	     # yum upgrade
 
 #1. Chuẩn bị môi trường cài đặt
 ##1.1 Cấu hình mạng
