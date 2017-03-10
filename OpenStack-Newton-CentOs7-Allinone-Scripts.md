@@ -922,4 +922,5 @@ Mở web với địa chỉ http://192.168.2.50/dashboard để truy cập vào 
 
 #6. Tài liệu tham khảo
 [1] https://docs.openstack.org/newton/install-guide-rdo/
+
 [2] https://www.server-world.info/en/note?os=CentOS_7&p=openstack_newton&f=10
